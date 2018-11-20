@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	xmlns:util="http://www.springframework.org/schema/util"
+   >
+
+
+<bean id="account1" class="com.capgemini.beans.Account">
+<constructor-arg index="0" value="123456"/>
+<constructor-arg index="1" value="Reb"/>
+<constructor-arg index="2" value="1000"/>
+</bean>
+
+<bean id="account2" class="com.capgemini.beans.Account">
+<constructor-arg index="0" value="12345677"/>
+<constructor-arg index="1" value="hello"/>
+<constructor-arg index="2" value="1000"/>
+</bean>
+
+	<util:map id="accountList" key-type="java.lang.Integer" value-type="com.capgemini.beans.Account" map-class="java.util.HashMap">
+		<!-- <entry key="123456" value-ref="account1"/>
+		<entry key="12345677" value-ref="account2"/> -->
+	</util:map>
+	<bean id="repository" class="com.capgemini.repository.RepositoryImplementation">
+		<constructor-arg index="0" ref="accountList" />
+	</bean>
+	<bean id="service" class="com.capgemini.service.ServiceImplementation">
+		<constructor-arg index="0" ref="repository"/>
+	</bean> 
+
+
+
+</beans>
+
